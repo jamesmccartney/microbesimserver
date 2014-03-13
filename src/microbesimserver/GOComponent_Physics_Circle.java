@@ -3,22 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package microbesimserver;
 
 import java.util.ListIterator;
 import java.util.UUID;
+import org.jbox2d.collision.*;
+import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.dynamics.*;
+//import org.jbox2d.pooling.*;
+//import org.jbox2d.callbacks.*;
+import org.jbox2d.common.*;
 
 /**
- * Decorations are things in the world the player sees but doesn’t interact with.
  *
  * @author jmccartney
  */
-public class GOComponent_Script_Decoration extends GOComponent {
-        
-    public GOComponent_Script_Decoration(String typeIn) {
+public class GOComponent_Physics_Circle extends GOComponent {
+
+    private BodyDef bd;
+    private float x, y;
+    public CircleShape shape;
+    private FixtureDef fd;
+
+    public GOComponent_Physics_Circle(String typeIn) {
         this.setType(typeIn);
+
         this.id = UUID.randomUUID();
+
+        this.bd = new BodyDef();
+        this.fd = new FixtureDef();
+        this.fd.shape = shape;
     }
 
     //Begin Composite Methods
@@ -108,9 +122,59 @@ public class GOComponent_Script_Decoration extends GOComponent {
         return true;
 
     }
-    
+
     public boolean getStatus() {
         return this.status;
     }
     //End Composite Methods
+
+    //Getter/Setter
+    public void setX(float inX) {
+        this.x = inX;
+    }
+
+    public float getX() {
+        return this.x;
+    }
+
+    public void setY(float inY) {
+        this.y = inY;
+    }
+
+    public float getY() {
+        return this.y;
+    }
+
+    public void setRadius(float inRadius) {
+        this.shape.m_radius = inRadius;
+    }
+
+    public float getRadius() {
+        return this.shape.m_radius;
+    }
+
+    public void setDensity(float inDensity) {
+        this.fd.density = inDensity;
+    }
+
+    public float getDensity() {
+        return this.fd.density;
+    }
+
+    public void setFriction(float inFriction) {
+        this.fd.friction = inFriction;
+    }
+
+    public float getFriction() {
+        return this.fd.friction;
+    }
+
+    public void setRestitution(float inRestitution) {
+        this.fd.restitution = inRestitution;
+    }
+
+    public float getRestitution() {
+        return this.fd.restitution;
+    }
+
 }

@@ -8,6 +8,11 @@ package microbesimserver;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.UUID;
+//import org.jbox2d.collision.*;
+import org.jbox2d.dynamics.*;
+//import org.jbox2d.pooling.*;
+//import org.jbox2d.callbacks.*;
+import org.jbox2d.common.*;
 
 
 /**
@@ -15,6 +20,8 @@ import java.util.UUID;
  * @author jmccartney
  */
 public class GOComponent_Physics extends GOComponent {
+    
+    public World world;
 
     public GOComponent_Physics(String typeIn) {
         componentList = new LinkedList();
@@ -252,5 +259,14 @@ public class GOComponent_Physics extends GOComponent {
         return this.status;
     }
     //End Composite Methods
+    
+    public boolean setWorld(World inWorld){
+        world = inWorld;
+        return true;
+    }
+    
+    public World getWorld(){
+        return world;
+    }
 
 }

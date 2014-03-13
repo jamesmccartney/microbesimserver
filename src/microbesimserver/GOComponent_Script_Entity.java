@@ -9,6 +9,7 @@ import java.util.ListIterator;
 import java.util.UUID;
 
 /**
+ * Decorations are things that represent the player or other players.
  *
  * @author jmccartney
  */
@@ -100,7 +101,6 @@ public class GOComponent_Script_Entity extends GOComponent {
         //Logic here
         return true;
     }
-    //End Composite Methods
 
     public boolean setStatus(boolean newStatus) {
         this.status = newStatus;
@@ -111,4 +111,5 @@ public class GOComponent_Script_Entity extends GOComponent {
     public boolean getStatus() {
         return this.status;
     }
+    //End Composite Methods
 }

@@ -8,7 +8,6 @@ package microbesimserver;
 import java.util.ListIterator;
 import java.util.UUID;
 
-
 /**
  * TEMPLATE FOR LEAF CLASS OF GOComponent.
  *
@@ -104,16 +103,15 @@ public class GOComponent_Leaf extends GOComponent {
         //Logic here
         return true;
     }
-    //End Composite Methods
 
     public boolean setStatus(boolean newStatus) {
         this.status = newStatus;
         return true;
 
     }
-    
+
     public boolean getStatus() {
         return this.status;
     }
-
+    //End Composite Methods
 }

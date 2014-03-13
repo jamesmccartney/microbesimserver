@@ -9,6 +9,7 @@ import java.util.ListIterator;
 import java.util.UUID;
 
 /**
+ * Props are like decorations but can be touched.
  *
  * @author jmccartney
  */
@@ -100,7 +101,6 @@ public class GOComponent_Script_Prop extends GOComponent {
         //Logic here
         return true;
     }
-    //End Composite Methods
 
     public boolean setStatus(boolean newStatus) {
         this.status = newStatus;
@@ -111,4 +111,5 @@ public class GOComponent_Script_Prop extends GOComponent {
     public boolean getStatus() {
         return this.status;
     }
+    //End Composite Methods
 }

@@ -9,6 +9,7 @@ import java.util.ListIterator;
 import java.util.UUID;
 
 /**
+ * Zones are the opposite of decorations: invisible but interactive.
  *
  * @author jmccartney
  */
@@ -100,8 +101,7 @@ public class GOComponent_Script_Zone extends GOComponent {
         //Logic here
         return true;
     }
-    //End Composite Methods
-
+    
     public boolean setStatus(boolean newStatus) {
         this.status = newStatus;
         return true;
@@ -111,4 +111,5 @@ public class GOComponent_Script_Zone extends GOComponent {
     public boolean getStatus() {
         return this.status;
     }
+    //End Composite Methods
 }
