@@ -5,53 +5,71 @@
  */
 package microbesimserver;
 
+import java.util.ListIterator;
+
+
 /**
  *
  * @author jmccartney
  */
-public class GOComponent_Physics implements GOComponent {
-    
-    protected GOComponent_Physics parent;
+public class GOComponent_Physics extends GOComponent {
 
-    public GOComponent_Physics() {
-
-    }
-    
     //Begin Composite Methods
-
-    public void attach(GOComponent component) {
-        //nothing to do here - leaf node
+    public int countComponents() {
+        return 1;
     }
 
-    public GOComponent getChild(int i) {
-       //nothing to do here - leaf node
+    public boolean attach(GOComponent componentToAdd) {
+        //Do nothing this is a leaf
+        return false;
+    }
+
+    public boolean detach(GOComponent componentToDetach) {
+        //Do nothing this is a leaf
+        return false;
+    }
+
+    public ListIterator createListIterator() {
+        //Do nothing this is a leaf
         return null;
     }
 
+    public boolean update() {
+        //Logic here
+        return true;
+    }
+
+    public boolean updateByType(String type) {
+        //Do nothing this is a leaf
+        return true;
+    }
+
+    public GOComponent getChild(int idIn) {
+        return this;
+    }
+
     public void print() {
-        System.out.println("-------------");
-
+        //Print this
     }
 
-    public void detach(GOComponent component) {
-        //nothing to do here - leaf node
+    public void printChild(int idIn) {
+        //Do nothing this is a leaf
     }
-    
-    public void update(){
-        
+
+    public boolean broadcastMsg(GOComponentMsg msgOut) {
+        //Logic here
+        return true;
     }
-    
-    public void updateByType(String type){
-        
+
+    public boolean sendMsg(int id, GOComponentMsg msgOut) {
+        //Logic here
+        return true;
     }
-    
-    public void broadcastMsg(){
-        
+
+    public boolean handleMsg(GOComponentMsg msgIn) {
+        //Logic here
+        return true;
     }
-    
-    public void handleMsg(){
-        
-    }
-    
     //End Composite Methods
+
 }
