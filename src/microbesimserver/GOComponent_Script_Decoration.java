@@ -3,22 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package microbesimserver;
 
 import java.util.ListIterator;
 import java.util.UUID;
 
-
 /**
- * TEMPLATE FOR LEAF CLASS OF GOComponent.
- *
- * DO NOT USE DIRECTLY!
  *
  * @author jmccartney
  */
-public class GOComponent_Leaf extends GOComponent {
-
-    public GOComponent_Leaf(String typeIn) {
+public class GOComponent_Script_Decoration extends GOComponent {
+        
+    public GOComponent_Script_Decoration(String typeIn) {
         this.setType(typeIn);
         this.id = UUID.randomUUID();
     }
@@ -115,5 +112,4 @@ public class GOComponent_Leaf extends GOComponent {
     public boolean getStatus() {
         return this.status;
     }
-
 }

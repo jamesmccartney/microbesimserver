@@ -8,17 +8,13 @@ package microbesimserver;
 import java.util.ListIterator;
 import java.util.UUID;
 
-
 /**
- * TEMPLATE FOR LEAF CLASS OF GOComponent.
- *
- * DO NOT USE DIRECTLY!
  *
  * @author jmccartney
  */
-public class GOComponent_Leaf extends GOComponent {
+public class GOComponent_Script_Prop extends GOComponent {
 
-    public GOComponent_Leaf(String typeIn) {
+    public GOComponent_Script_Prop(String typeIn) {
         this.setType(typeIn);
         this.id = UUID.randomUUID();
     }
@@ -111,9 +107,8 @@ public class GOComponent_Leaf extends GOComponent {
         return true;
 
     }
-    
+
     public boolean getStatus() {
         return this.status;
     }
-
 }

@@ -7,6 +7,8 @@ package microbesimserver;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.UUID;
+
 
 /**
  *
@@ -17,6 +19,7 @@ public class GOComponent_Physics extends GOComponent {
     public GOComponent_Physics(String typeIn) {
         componentList = new LinkedList();
         this.setType(typeIn);
+        this.id = UUID.randomUUID();
     }
 
     //Begin Composite Methods
@@ -135,7 +138,7 @@ public class GOComponent_Physics extends GOComponent {
         return flag;
     }
 
-    public boolean updateChild(int idIn) {
+    public boolean updateChild(UUID idIn) {
         ListIterator listIterator = this.createListIterator();
         GOComponent tempComponent;
         while (listIterator.hasNext()) {
@@ -149,7 +152,7 @@ public class GOComponent_Physics extends GOComponent {
         return false;
     }
 
-    public boolean updateByType(int idIn) {
+    public boolean updateByType(UUID idIn) {
         ListIterator listIterator = this.createListIterator();
         GOComponent tempComponent;
         boolean flag = true;
@@ -164,7 +167,7 @@ public class GOComponent_Physics extends GOComponent {
         return flag;
     }
 
-    public GOComponent getChild(int idIn) {
+    public GOComponent getChild(UUID idIn) {
         ListIterator listIterator = this.createListIterator();
         GOComponent tempComponent;
         while (listIterator.hasNext()) {
@@ -186,7 +189,7 @@ public class GOComponent_Physics extends GOComponent {
         }
     }
 
-    public void printChild(int idIn) {
+    public void printChild(UUID idIn) {
         ListIterator listIterator = this.createListIterator();
         GOComponent tempComponent;
         while (listIterator.hasNext()) {
@@ -210,7 +213,7 @@ public class GOComponent_Physics extends GOComponent {
         return flag;
     }
 
-    public boolean sendMsg(int id, GOComponentMsg msgOut) {
+    public boolean sendMsg(UUID id, GOComponentMsg msgOut) {
         ListIterator listIterator = this.createListIterator();
         GOComponent tempComponent;
         boolean flag = true;

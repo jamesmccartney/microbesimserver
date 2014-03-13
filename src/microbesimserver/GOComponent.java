@@ -7,6 +7,7 @@ package microbesimserver;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.UUID;
 /**
  * 
  * Abstract class for Composite pattern used by game object components.  Meant to be used in conjunction with GOCompnentManger.
@@ -18,7 +19,7 @@ public abstract class GOComponent {
     LinkedList componentList;
     GOComponent parent;
     String type;
-    int id;
+    UUID id;
     
     public boolean status = false;
     
@@ -36,14 +37,14 @@ public abstract class GOComponent {
     
     public abstract boolean update();
     public abstract boolean updateByType(String type);
-    public abstract boolean updateChild(int id);
-    public abstract GOComponent getChild(int id);
+    public abstract boolean updateChild(UUID id);
+    public abstract GOComponent getChild(UUID id);
     
     public abstract void print();
-    public abstract void printChild(int id);
+    public abstract void printChild(UUID id);
     
     public abstract boolean broadcastMsg(GOComponentMsg msgOut);
-    public abstract boolean sendMsg(int id, GOComponentMsg msgOut);
+    public abstract boolean sendMsg(UUID id, GOComponentMsg msgOut);
     public abstract boolean handleMsg(GOComponentMsg msgIn);
     
     public abstract boolean setStatus(boolean newStatus);
@@ -65,11 +66,11 @@ public abstract class GOComponent {
         return type;
     }
     
-    public void setId(int idIn) {
+    public void setId(UUID idIn) {
         id = idIn;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
