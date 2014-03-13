@@ -6,11 +6,16 @@
 package microbesimserver;
 
 import java.util.ListIterator;
+
 /**
  *
  * @author jmccartney
  */
 public class GOComponent_Script extends GOComponent {
+
+    public GOComponent_Script(String typeIn) {
+        this.setType(typeIn);
+    }
 
     //Begin Composite Methods
     public int countComponents() {
@@ -69,5 +74,5 @@ public class GOComponent_Script extends GOComponent {
         return true;
     }
     //End Composite Methods
-    
+
 }
