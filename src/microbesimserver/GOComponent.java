@@ -20,7 +20,7 @@ public abstract class GOComponent {
     String type;
     int id;
     
-    public static final boolean STATUS = false;
+    public boolean status = false;
     
     public abstract int countComponents();
     
@@ -46,6 +46,9 @@ public abstract class GOComponent {
     public abstract boolean sendMsg(int id, GOComponentMsg msgOut);
     public abstract boolean handleMsg(GOComponentMsg msgIn);
     
+    public abstract boolean setStatus(boolean newStatus);
+    public abstract boolean getStatus();
+    
     public void setParent(GOComponent parentIn){
         parent = parentIn;
     }
@@ -69,4 +72,5 @@ public abstract class GOComponent {
     public int getId() {
         return id;
     }
+
 }

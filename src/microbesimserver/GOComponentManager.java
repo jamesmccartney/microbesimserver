@@ -140,7 +140,7 @@ public class GOComponentManager extends GOComponent {
         while (listIterator.hasNext()) {
             tempComponent = (GOComponent) listIterator.next();
             if (tempComponent.getId() == idIn) {
-                if(tempComponent.update()){
+                if (tempComponent.update()) {
                     return true;
                 }
             }
@@ -227,6 +227,25 @@ public class GOComponentManager extends GOComponent {
     public boolean handleMsg(GOComponentMsg msgIn) {
         //Logic here
         return true;
+    }
+
+    public boolean setStatus(boolean newStatus) {
+        ListIterator listIterator = this.createListIterator();
+        GOComponent tempComponent;
+        boolean flag = true;
+        while (listIterator.hasNext()) {
+            tempComponent = (GOComponent) listIterator.next();
+            if(!tempComponent.setStatus(newStatus)){
+                return false;
+            }
+        }
+        this.status = newStatus;
+        return flag;
+
+    }
+
+    public boolean getStatus() {
+        return this.status;
     }
 
 }

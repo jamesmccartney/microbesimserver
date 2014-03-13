@@ -10,7 +10,7 @@ import java.util.ListIterator;
 
 /**
  * TEMPLATE FOR COMPOSITE CLASS OF GOComponent.
- * 
+ *
  * DO NOT USE DIRECTLY!
  *
  * @author jmccartney
@@ -233,5 +233,24 @@ public class GOComponent_Composite extends GOComponent {
         return true;
     }
     //End Composite Methods
+
+    public boolean setStatus(boolean newStatus) {
+        ListIterator listIterator = this.createListIterator();
+        GOComponent tempComponent;
+        boolean flag = true;
+        while (listIterator.hasNext()) {
+            tempComponent = (GOComponent) listIterator.next();
+            if (!tempComponent.setStatus(newStatus)) {
+                return false;
+            }
+        }
+        this.status = newStatus;
+        return flag;
+
+    }
+
+    public boolean getStatus() {
+        return this.status;
+    }
 
 }
