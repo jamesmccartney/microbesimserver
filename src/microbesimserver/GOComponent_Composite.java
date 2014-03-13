@@ -9,12 +9,15 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 /**
+ * TEMPLATE FOR COMPOSITE CLASS OF GOComponent.
+ * 
+ * DO NOT USE DIRECTLY!
  *
  * @author jmccartney
  */
-public class GOComponent_Script extends GOComponent {
+public class GOComponent_Composite extends GOComponent {
 
-    public GOComponent_Script(String typeIn) {
+    public GOComponent_Composite(String typeIn) {
         componentList = new LinkedList();
         this.setType(typeIn);
     }
@@ -141,7 +144,7 @@ public class GOComponent_Script extends GOComponent {
         while (listIterator.hasNext()) {
             tempComponent = (GOComponent) listIterator.next();
             if (tempComponent.getId() == idIn) {
-                if(tempComponent.update()){
+                if (tempComponent.update()) {
                     return true;
                 }
             }

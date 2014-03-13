@@ -8,6 +8,8 @@ package microbesimserver;
 import java.util.LinkedList;
 import java.util.ListIterator;
 /**
+ * 
+ * Abstract class for Composite pattern used by game object components.  Meant to be used in conjunction with GOCompnentManger.
  *
  * @author jmccartney
  */
@@ -18,15 +20,28 @@ public abstract class GOComponent {
     String type;
     int id;
     
+    public static final boolean STATUS = false;
+    
     public abstract int countComponents();
+    
     public abstract boolean attach(GOComponent componentToAdd);
     public abstract boolean detach(GOComponent componentToDetach);
+    
+    public abstract boolean start();
+    public abstract boolean startChild(GOComponent componentToStart);
+    public abstract boolean stop();
+    public abstract boolean stopChild(GOComponent componentToStop);
+    
     public abstract ListIterator createListIterator();
+    
     public abstract boolean update();
     public abstract boolean updateByType(String type);
+    public abstract boolean updateChild(int id);
     public abstract GOComponent getChild(int id);
+    
     public abstract void print();
     public abstract void printChild(int id);
+    
     public abstract boolean broadcastMsg(GOComponentMsg msgOut);
     public abstract boolean sendMsg(int id, GOComponentMsg msgOut);
     public abstract boolean handleMsg(GOComponentMsg msgIn);

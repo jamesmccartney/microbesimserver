@@ -49,6 +49,58 @@ public class GOComponentManager extends GOComponent {
         return false;
     }
 
+    public boolean startChild(GOComponent componentToStart) {
+        ListIterator listIterator = this.createListIterator();
+        GOComponent tempComponent;
+        while (listIterator.hasNext()) {
+            tempComponent = (GOComponent) listIterator.next();
+            if (tempComponent == componentToStart) {
+                if (tempComponent.start()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean stopChild(GOComponent componentToStop) {
+        ListIterator listIterator = this.createListIterator();
+        GOComponent tempComponent;
+        while (listIterator.hasNext()) {
+            tempComponent = (GOComponent) listIterator.next();
+            if (tempComponent == componentToStop) {
+                if (tempComponent.stop()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean start() {
+        ListIterator listIterator = this.createListIterator();
+        GOComponent tempComponent;
+        while (listIterator.hasNext()) {
+            tempComponent = (GOComponent) listIterator.next();
+            if (tempComponent.start()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean stop() {
+        ListIterator listIterator = this.createListIterator();
+        GOComponent tempComponent;
+        while (listIterator.hasNext()) {
+            tempComponent = (GOComponent) listIterator.next();
+            if (tempComponent.stop()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ListIterator createListIterator() {
         ListIterator listIterator = componentList.listIterator();
         return listIterator;
@@ -74,6 +126,35 @@ public class GOComponentManager extends GOComponent {
         while (listIterator.hasNext()) {
             tempComponent = (GOComponent) listIterator.next();
             if (tempComponent.getType() == type) {
+                if (!tempComponent.update()) {
+                    flag = false;
+                }
+            }
+        }
+        return flag;
+    }
+
+    public boolean updateChild(int idIn) {
+        ListIterator listIterator = this.createListIterator();
+        GOComponent tempComponent;
+        while (listIterator.hasNext()) {
+            tempComponent = (GOComponent) listIterator.next();
+            if (tempComponent.getId() == idIn) {
+                if(tempComponent.update()){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean updateByType(int idIn) {
+        ListIterator listIterator = this.createListIterator();
+        GOComponent tempComponent;
+        boolean flag = true;
+        while (listIterator.hasNext()) {
+            tempComponent = (GOComponent) listIterator.next();
+            if (tempComponent.getId() == idIn) {
                 if (!tempComponent.update()) {
                     flag = false;
                 }
@@ -121,7 +202,7 @@ public class GOComponentManager extends GOComponent {
         boolean flag = true;
         while (listIterator.hasNext()) {
             tempComponent = (GOComponent) listIterator.next();
-            if(!tempComponent.handleMsg(msgOut)){
+            if (!tempComponent.handleMsg(msgOut)) {
                 flag = false;
             }
         }
@@ -135,7 +216,7 @@ public class GOComponentManager extends GOComponent {
         while (listIterator.hasNext()) {
             tempComponent = (GOComponent) listIterator.next();
             if (tempComponent.getId() == id) {
-                if(!tempComponent.handleMsg(msgOut)){
+                if (!tempComponent.handleMsg(msgOut)) {
                     return false;
                 }
             }
