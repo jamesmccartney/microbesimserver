@@ -7,12 +7,15 @@ package microbesimserver;
 
 import java.util.ListIterator;
 
-
 /**
  *
  * @author jmccartney
  */
 public class GOComponent_Physics extends GOComponent {
+
+    public GOComponent_Physics(String typeIn) {
+        this.setType(typeIn);
+    }
 
     //Begin Composite Methods
     public int countComponents() {
