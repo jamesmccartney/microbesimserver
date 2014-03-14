@@ -52,6 +52,7 @@ public class GOComponent_Physics_Circle extends GOComponent {
 
     public boolean start() {
         //Logic here
+        
         return true;
     }
 
