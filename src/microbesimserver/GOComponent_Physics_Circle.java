@@ -177,5 +177,5 @@ public class GOComponent_Physics_Circle extends GOComponent {
     public float getRestitution() {
         return this.fd.restitution;
     }
-
+    
 }
