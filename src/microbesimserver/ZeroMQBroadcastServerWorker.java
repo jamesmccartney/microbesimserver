@@ -29,8 +29,11 @@ public class ZeroMQBroadcastServerWorker extends Thread {
         socket.bind(this.address);
 
         while (true) {
-            //Request update on node sever
+
+            
+            //broadcast to node server
             socket.send("world", 0);
+                        
 
             // Do some 'work'
             try {
