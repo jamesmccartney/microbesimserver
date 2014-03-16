@@ -5,6 +5,9 @@
  */
 package microbesimserver;
 
+import java.util.concurrent.LinkedTransferQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
 /**
  *
  * @author jmccartney
@@ -48,7 +51,7 @@ public class MicrobeSimServer {
         final double GAME_HERTZ = 30.0;
         //Calculate how many ns each tick should take for our target simulation hertz.
         final double TIME_BETWEEN_UPDATES = 1000000000 / GAME_HERTZ;
-      //At the very most we will update the simulation this many times before a new broadcast.
+        //At the very most we will update the simulation this many times before a new broadcast.
         //If you're worried about visual hitches more than perfect timing, set this to 1.
         final int MAX_UPDATES_BEFORE_BROADCAST = 5;
         //We will need the last update time.
@@ -75,7 +78,7 @@ public class MicrobeSimServer {
                     updateCount++;
                 }
 
-            //If for some reason an update takes forever, we don't want to do an insane number of catchups.
+                //If for some reason an update takes forever, we don't want to do an insane number of catchups.
                 //If you were doing some sort of simulation that needed to keep EXACT time, you would get rid of this.
                 if (now - lastUpdateTime > TIME_BETWEEN_UPDATES) {
                     lastUpdateTime = now - TIME_BETWEEN_UPDATES;
@@ -99,7 +102,7 @@ public class MicrobeSimServer {
                 while (now - lastBroadcastTime < TARGET_TIME_BETWEEN_BROADCASTS && now - lastUpdateTime < TIME_BETWEEN_UPDATES) {
                     Thread.yield();
 
-               //This stops the app from consuming all your CPU. It makes this slightly less accurate, but is worth it.
+                    //This stops the app from consuming all your CPU. It makes this slightly less accurate, but is worth it.
                     //You can remove this line and it will still work (better), your CPU just climbs on certain OSes.
                     //FYI on some OS's this can cause pretty bad stuttering. Scroll down and have a look at different peoples' solutions to this.
                     try {
@@ -125,20 +128,45 @@ public class MicrobeSimServer {
     private class Simulation {
 
         float interpolation;
-      // float ballX, ballY, lastBallX, lastBallY;
+        LinkedTransferQueue goCUpdateQueue;
+        LinkedBlockingQueue goInSim;
+
+        // float ballX, ballY, lastBallX, lastBallY;
         // int ballWidth, ballHeight;
         // float ballXVel, ballYVel;
         // float ballSpeed;
         // int lastDrawX, lastDrawY;
-
         public Simulation() {
-         // ballX = lastBallX = 100;
-            // ballY = lastBallY = 100;
-            // ballWidth = 25;
-            // ballHeight = 25;
-            // ballSpeed = 25;
-            // ballXVel = (float) Math.random() * ballSpeed*2 - ballSpeed;
-            // ballYVel = (float) Math.random() * ballSpeed*2 - ballSpeed;
+
+            goCUpdateQueue = new LinkedTransferQueue();
+            goInSim = new LinkedBlockingQueue();
+
+            int count = 0;
+            while (count < 100) {
+                GOComponent physics_circle = new GOComponent_Physics_Circle("physics_circle");
+                GOComponent physics = new GOComponent_Physics("physics");
+                physics.attach(physics_circle);
+
+                GOComponent script_entity = new GOComponent_Script("script_entity");
+                GOComponent script_prop = new GOComponent_Script("script_prop");
+                GOComponent script_decoration = new GOComponent_Script("script_decoration");
+                GOComponent script = new GOComponent_Script("script");
+                script.attach(script_entity);
+                script.attach(script_prop);
+                script.attach(script_decoration);
+
+                GOComponent objectManager = new GOComponentManager("entity");
+                objectManager.attach(script);
+                objectManager.attach(physics);
+
+                //add to list
+                goInSim.add(objectManager);
+
+                count++;
+
+            }
+            System.out.println("Initialied and put: " + goInSim.size() + " game objects into goInSim");
+
         }
 
         public void setInterpolation(float interp) {
@@ -146,14 +174,14 @@ public class MicrobeSimServer {
         }
 
         public void update() {
-         // lastBallX = ballX;
+            // lastBallX = ballX;
             // lastBallY = ballY;
 
         }
 
         public void broadcast() {
 
-         // int drawX = (int) ((ballX - lastBallX) * interpolation + lastBallX - ballWidth/2);
+            // int drawX = (int) ((ballX - lastBallX) * interpolation + lastBallX - ballWidth/2);
             // int drawY = (int) ((ballY - lastBallY) * interpolation + lastBallY - ballHeight/2);
             tickCount++;
         }
