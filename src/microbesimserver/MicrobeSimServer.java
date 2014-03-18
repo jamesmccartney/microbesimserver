@@ -143,24 +143,11 @@ public class MicrobeSimServer {
 
             int count = 0;
             while (count < 100) {
-                GOComponent physics_circle = new GOComponent_Physics_Circle("physics_circle");
-                GOComponent physics = new GOComponent_Physics("physics");
-                physics.attach(physics_circle);
-
-                GOComponent script_entity = new GOComponent_Script("script_entity");
-                GOComponent script_prop = new GOComponent_Script("script_prop");
-                GOComponent script_decoration = new GOComponent_Script("script_decoration");
-                GOComponent script = new GOComponent_Script("script");
-                script.attach(script_entity);
-                script.attach(script_prop);
-                script.attach(script_decoration);
-
-                GOComponent objectManager = new GOComponentManager("entity");
-                objectManager.attach(script);
-                objectManager.attach(physics);
+                
+                GameObject gameObject = new GameObject();
 
                 //add to list
-                goInSim.add(objectManager);
+                goInSim.add(gameObject);
 
                 count++;
 
