@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.UUID;
 
-
 /**
  *
  * @author jmccartney
@@ -252,5 +251,48 @@ public class GOComponent_Script extends GOComponent {
         return this.status;
     }
     //End Composite Methods
+
+    public boolean initialize(String type) {
+        switch (type) {
+            case "decoration":
+                //add deocration component
+                GOComponent_Script_Decoration dScript = new GOComponent_Script_Decoration(null);
+                this.attach(dScript);
+                if(dScript.start()){
+                    return true;
+                }else{
+                    return false;
+                }
+            case "entity":
+                //add deocration component
+                GOComponent_Script_Entity eScript = new GOComponent_Script_Entity(null);
+                this.attach(eScript);
+                if(eScript.start()){
+                    return true;
+                }else{
+                    return false;
+                }
+            case "prop":
+                //add deocration component
+                GOComponent_Script_Prop pScript = new GOComponent_Script_Prop(null);
+                this.attach(pScript);
+                if(pScript.start()){
+                    return true;
+                }else{
+                    return false;
+                }
+            case "zone":
+                //add deocration component
+                GOComponent_Script_Zone zScript = new GOComponent_Script_Zone(null);
+                this.attach(zScript);
+                if(zScript.start()){
+                    return true;
+                }else{
+                    return false;
+                }
+            default:
+                return false;
+        }
+    }
 
 }
