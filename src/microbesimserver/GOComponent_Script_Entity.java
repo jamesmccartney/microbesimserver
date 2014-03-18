@@ -112,4 +112,12 @@ public class GOComponent_Script_Entity extends GOComponent {
         return this.status;
     }
     //End Composite Methods
+    
+    
+    
+    
+    
+    
+    
+    
 }
